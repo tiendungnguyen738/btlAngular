@@ -10,6 +10,7 @@ import { EmployeeService } from './employee.service';
 import { EmployeeformComponent } from './employeeform/employeeform.component';
 import { ReactiveFormsModule} from '@angular/forms';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
+import { DepartmentServiceService } from './department-service.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { EmployeeDetailsComponent } from './employee-details/employee-details.co
     // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService,{dataEncapsulation :false}),
     ReactiveFormsModule
   ],
-  providers: [EmployeeService],
+  providers: [EmployeeService,DepartmentServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

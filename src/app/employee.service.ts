@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable,of} from 'rxjs';
+import { Observable} from 'rxjs';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Employee } from './Employee';
 
@@ -25,7 +25,12 @@ export class EmployeeService {
 
   //get a employee
   getEmployee(id:number):Observable<Employee>{
-    const urlGetEmployee = '${this.employeeUrl}/${id}';
+    const urlGetEmployee = this.employeeUrl+'/'+id;
     return this.httpClient.get<Employee>(urlGetEmployee);
+  }
+
+  //edit employee
+  updateEmployee(employee:Employee):Observable<any>{
+    return this.httpClient.put(this.employeeUrl,employee,this.httpOptions);
   }
 }

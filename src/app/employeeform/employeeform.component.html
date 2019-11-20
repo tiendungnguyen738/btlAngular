@@ -1,14 +1,49 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-          <label for="exampleInputPassword1">Name</label>
-          <input type="text" id="Name" placeholder="Name" formControlName="name">
+<h3>Add Employee</h3>
+<form [formGroup]="formEmployee" (onSubmit)="formEmployee.value">
 
-          <label for="exampleInputPassword1">Phone</label>
-          <input type="text" id="Phone" placeholder="Phone" formControlName="phone">
+ <div class="form-group">
+      <label for="id">Name</label>
+      <input type="text" class="form-control" required id="id" placeholder="enter Name" formControlName="empName">
+  </div>
 
-          <label for="exampleInputPassword1">Address</label>
-          <input type="text" id="Address" placeholder="Address" formControlName="address">
+  <!-- <div class="form-group">
+      <label for="id">BirthDay</label>
+      <input type="text" class="form-control" id="id" placeholder="enter BirthDay" formControlName="empDob">
+  </div>
 
-          <label for="exampleInputPassword1">empType</label>
-          <input type="number" id="empType" placeholder="empType" formControlName="empTypeeee">
-        <button type="submit" class="btn btn-primary">ADD</button>
+  <div class="form-group">
+      <label for="id">Sex</label>
+      <input type="number" class="form-control" id="id" placeholder="enter Sex" formControlName="empSex">
+  </div>
+
+  <div class="form-group">
+      <label for="id">NumberInsurance</label>
+      <input type="text" class="form-control" id="id" placeholder="enter NumberInsurance" formControlName="empNumberInsurance">
+  </div>
+
+  <div class="form-group">
+      <label for="id">Address</label>
+      <input type="text" class="form-control" id="id" placeholder="enter Address" formControlName="empAddress">
+  </div>
+
+  <div class="form-group">
+      <label for="id">Phone</label>
+      <input type="text" class="form-control" id="id" placeholder="enter Phone" formControlName="empPhone">
+  </div>
+
+  <div class="form-group">
+      <label for="type">Type</label>
+      <input type="number" class="form-control" name="type" placeholder="enter Type" formControlName="empType">
+  </div> -->
+
+   <div class="form-group">
+    <label for="id">Department</label><br>
+    <select [formControlName]="department" id="id" class="form-control form-control-sm">
+      <option *ngFor="let phongban of departmentArray" value="phongban.id">{{phongban.departmentName}}</option>
+    </select>
+</div>
+  <button type="submit" (click)="save(formEmployee.value)" [disabled]="!formEmployee.valid">save</button>
 </form>
+<button (click)="goBack()">go back</button>
+
+<p>{{formEmployee.status}}</p>
