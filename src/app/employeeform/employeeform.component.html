@@ -1,49 +1,47 @@
 <h3>Add Employee</h3>
-<form [formGroup]="formEmployee" (onSubmit)="formEmployee.value">
-
+<form #formEmployee="ngForm"
+      (ngSubmit)="onSubmit(formEmployee.value)">
  <div class="form-group">
-      <label for="id">Name</label>
-      <input type="text" class="form-control" required id="id" placeholder="enter Name" formControlName="empName">
-  </div>
-
-  <!-- <div class="form-group">
-      <label for="id">BirthDay</label>
-      <input type="text" class="form-control" id="id" placeholder="enter BirthDay" formControlName="empDob">
+      <label for="id1">Name</label>
+      <input type="text" class="form-control" id="id1" placeholder="enter Name" name="empName" ngModel>
   </div>
 
   <div class="form-group">
-      <label for="id">Sex</label>
-      <input type="number" class="form-control" id="id" placeholder="enter Sex" formControlName="empSex">
+      <label for="id2">BirthDay</label>
+      <input type="text" class="form-control" id="id2" placeholder="enter BirthDay" name="empDob" ngModel>
   </div>
 
   <div class="form-group">
-      <label for="id">NumberInsurance</label>
-      <input type="text" class="form-control" id="id" placeholder="enter NumberInsurance" formControlName="empNumberInsurance">
+      <label for="id3">Sex</label>
+      <input type="number" class="form-control" id="id3" placeholder="enter Sex" name="empSex" ngModel>
   </div>
 
   <div class="form-group">
-      <label for="id">Address</label>
-      <input type="text" class="form-control" id="id" placeholder="enter Address" formControlName="empAddress">
+      <label for="id4">NumberInsurance</label>
+      <input type="text" class="form-control" id="id4" placeholder="enter NumberInsurance" name="empNumberInsurance" ngModel>
   </div>
 
   <div class="form-group">
-      <label for="id">Phone</label>
-      <input type="text" class="form-control" id="id" placeholder="enter Phone" formControlName="empPhone">
+      <label for="id5">Address</label>
+      <input type="text" class="form-control" id="id5" placeholder="enter Address" name="empAddress" ngModel>
+  </div>
+
+  <div class="form-group">
+      <label for="id6">Phone</label>
+      <input type="text" class="form-control" id="id6" placeholder="enter Phone" name="empPhone" ngModel>
   </div>
 
   <div class="form-group">
       <label for="type">Type</label>
-      <input type="number" class="form-control" name="type" placeholder="enter Type" formControlName="empType">
-  </div> -->
+      <input type="number" class="form-control" id="type" placeholder="enter Type" name="empType" ngModel>
+  </div>
 
    <div class="form-group">
-    <label for="id">Department</label><br>
-    <select [formControlName]="department" id="id" class="form-control form-control-sm">
-      <option *ngFor="let phongban of departmentArray" value="phongban.id">{{phongban.departmentName}}</option>
-    </select>
-</div>
-  <button type="submit" (click)="save(formEmployee.value)" [disabled]="!formEmployee.valid">save</button>
+        <label for="ddd">Department</label><br>
+        <select id="ddd" class="form-control form-control-sm" name="Department" ngModel style="width: 20%;">
+            <option *ngFor="let phongban of departmentArray" [value]="phongban.id">{{phongban.departmentName}}</option>
+        </select>
+    </div>
+    <button type="submit">save</button>
 </form>
 <button (click)="goBack()">go back</button>
-
-<p>{{formEmployee.status}}</p>

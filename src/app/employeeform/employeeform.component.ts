@@ -3,6 +3,8 @@ import { FormGroup, FormControl,FormBuilder } from '@angular/forms';
 import { Department } from '../Department';
 import { DepartmentServiceService } from '../department-service.service';
 import { Validators} from '@angular/forms';
+import { Location} from '@angular/common';
+import { Employee } from '../Employee';
 
 @Component({
   selector: 'app-employeeform',
@@ -12,30 +14,23 @@ import { Validators} from '@angular/forms';
 export class EmployeeformComponent implements OnInit {
 
   constructor(private departmentService:DepartmentServiceService,
-              private formBuilder:FormBuilder) { 
+              private location:Location) { 
   }
 
-  formEmployee = this.formBuilder.group({
-    empName:['',Validators.required],
-    empDob:[''],
-    empSex:[''],
-    empNumberInsurance:[''],
-    empAddress:[''],
-    empPhone:[''],
-    empType:[''],
-    department:['']
-  });
   ngOnInit() {
     this.getDepartments();
   }
 
+  employee:Employee;
   departmentArray: Department[];
 
   getDepartments():void{
      this.departmentService.getAllDepartment().subscribe(departments =>this.departmentArray = departments);
   }
-  save(emp){
-    console.log(emp);
+  goBack(){
+    this.location.back();
   }
-  
+  onSubmit(employeeform){
+    console.log(employeeform);
+  }
 }

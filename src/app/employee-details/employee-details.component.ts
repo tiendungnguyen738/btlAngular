@@ -3,7 +3,6 @@ import { EmployeeService } from '../employee.service';
 import { Employee } from '../Employee';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { FormGroup,FormControl} from '@angular/forms';
 import { Validators} from '@angular/forms';
 
 
@@ -20,6 +19,7 @@ export class EmployeeDetailsComponent implements OnInit {
 
   employee:Employee;
 
+
   ngOnInit() {
     this.getEmployee(this.idEmployee);
   }
@@ -33,22 +33,10 @@ export class EmployeeDetailsComponent implements OnInit {
   goBack(){
     this.location.back();
   }
-  formEmployee = new FormGroup({
-    id : new FormControl(''),
-    empName : new FormControl(''),
-    empDob : new FormControl(''),
-    empSex : new FormControl(''),
-    empNumberInsurance : new FormControl(''),
-    empAddress : new FormControl(''),
-    empPhone : new FormControl(''),
-    empType: new FormControl(''),
-    department:new FormControl('')
-  });
-  onSubmit(nv){
-  //  this.employeeService.updateEmployee(nv).subscribe();
-   console.log(this.employee);
+  onSubmit(value){
+    this.employee.department.id = value.department;
+    this.employee.department.departmentName = "";
+    this.employeeService.updateEmployee(this.employee).subscribe(() => this.goBack());
   }
-  save():void{
-    // this.employeeService.updateEmployee(this.employee).subscribe(()=>this.goBack());
-  }
+
 }

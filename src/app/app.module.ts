@@ -11,6 +11,7 @@ import { EmployeeformComponent } from './employeeform/employeeform.component';
 import { ReactiveFormsModule} from '@angular/forms';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import { DepartmentServiceService } from './department-service.service';
+import { FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { DepartmentServiceService } from './department-service.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService,{dataEncapsulation :false}),
     ReactiveFormsModule
   ],
