@@ -33,4 +33,16 @@ export class EmployeeService {
   updateEmployee(employee:Employee):Observable<any>{
     return this.httpClient.put(this.employeeUrl,employee,this.httpOptions);
   }
+
+  //add employee
+  addNewEmployee(employee:Employee):Observable<any>{
+    return this.httpClient.post<Employee>(this.employeeUrl,employee,this.httpOptions);
+  }
+
+  //delete employee
+  deleteEmployee(employee: Employee | number):Observable<Employee>{
+    const id = typeof employee === 'number' ? employee:employee.id;
+    const urlDeleteEmp = this.employeeUrl + "/" + id;
+    return this.httpClient.delete<Employee>(urlDeleteEmp,this.httpOptions);
+  }
 }

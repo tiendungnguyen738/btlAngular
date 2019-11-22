@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl,FormBuilder } from '@angular/forms';
 import { Department } from '../Department';
 import { DepartmentServiceService } from '../department-service.service';
 import { Validators} from '@angular/forms';
 import { Location} from '@angular/common';
 import { Employee } from '../Employee';
+import { EmployeeService } from '../employee.service';
 
 @Component({
   selector: 'app-employeeform',
@@ -14,14 +14,15 @@ import { Employee } from '../Employee';
 export class EmployeeformComponent implements OnInit {
 
   constructor(private departmentService:DepartmentServiceService,
-              private location:Location) { 
+              private location:Location,
+              private employeeService:EmployeeService) { 
   }
+  
 
   ngOnInit() {
     this.getDepartments();
   }
-
-  employee:Employee;
+  department:Department={id:0,departmentName:""}
   departmentArray: Department[];
 
   getDepartments():void{
@@ -30,7 +31,12 @@ export class EmployeeformComponent implements OnInit {
   goBack(){
     this.location.back();
   }
-  onSubmit(employeeform){
-    console.log(employeeform);
+  
+  //add new employee
+  onSubmit(formEmployee){
+    formEmployee.department = +formEmployee.department;
+    this.department.id = formEmployee.department;
+    formEmployee.department = this.department;
+    this.employeeService.addNewEmployee(formEmployee).subscribe(() => this.goBack());
   }
 }
