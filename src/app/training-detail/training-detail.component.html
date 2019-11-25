@@ -1,0 +1,39 @@
+<h3>Edit Training</h3>
+<form #formTraining="ngForm"
+      (ngSubmit)="submit(formTraining.value)">
+  <div class="form-group">
+    <label for="id1">Training Id</label>
+    <input type="text" class="form-control" id="id0" readonly name="id" [(ngModel)]=training.id>
+ </div>
+
+ <div class="form-group">
+      <label for="id1">Training Name</label>
+      <input type="text" class="form-control" id="id1" placeholder="enter Training Name" name="trainingName" [(ngModel)]=training.trainingName
+      required #formName="ngModel">
+      <div [hidden]="formName.valid" class="alert alert-danger">Name is required</div>
+  </div>
+
+  <div class="form-group">
+      <label for="id2">Training Code</label>
+      <input type="text" class="form-control" id="id2" placeholder="enter Training Code" name="trainingCode" [(ngModel)]=training.trainingCode>
+  </div>
+
+  <div class="form-group">
+      <label for="id3">Trainging Start Date</label>
+      <input type="text" class="form-control" id="id3" placeholder="enter Trainging Start Date" name="trainingStartDate" [(ngModel)]=training.trainingStartDate>
+  </div>
+
+  <div class="form-group">
+      <label for="id4">Training End Date</label>
+      <input type="text" class="form-control" id="id4" placeholder="enter Training End Date" name="trainingEndDate" [(ngModel)]=training.trainingEndDate>
+  </div>
+
+  <div class="form-group">
+      <label for="id5">Training Status</label>
+      <input type="radio" id="id5" name="trainingStatus" value=1 style="margin-left: 3%;" [(ngModel)]=training.trainingStatus> Đang Hoạt Động
+      <input type="radio" id="id5" name="trainingStatus" value=0 style="margin-left: 2%;" [(ngModel)]=training.trainingStatus> Không Hoạt Động
+  </div>
+  <button type="submit" class="btn btn-outline-success" style="margin-left: 43%;">UPDATE</button>
+  <button type="button" class="btn btn-outline-info" (click)="goBack()" style="margin-left: 1%;">GO BACK</button>
+</form>
+

@@ -12,13 +12,20 @@ import { ReactiveFormsModule} from '@angular/forms';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import { DepartmentServiceService } from './department-service.service';
 import { FormsModule} from '@angular/forms';
+import { ListtrainingComponent } from './listtraining/listtraining.component';
+import { TrainingService } from './training.service';
+import { TrainingformComponent } from './trainingform/trainingform.component';
+import { TrainingDetailComponent } from './training-detail/training-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeesComponent,
     EmployeeformComponent,
-    EmployeeDetailsComponent
+    EmployeeDetailsComponent,
+    ListtrainingComponent,
+    TrainingformComponent,
+    TrainingDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +35,7 @@ import { FormsModule} from '@angular/forms';
     // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService,{dataEncapsulation :false}),
     ReactiveFormsModule
   ],
-  providers: [EmployeeService,DepartmentServiceService],
+  providers: [EmployeeService,DepartmentServiceService,TrainingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
