@@ -3,7 +3,6 @@ import { EmployeeService } from '../employee.service';
 import { Employee } from '../Employee';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { Validators} from '@angular/forms';
 import { DepartmentServiceService } from '../department-service.service';
 import { Department} from '../Department';
 
@@ -22,6 +21,8 @@ export class EmployeeDetailsComponent implements OnInit {
 
   employee:Employee;
   departments:Department[];
+  gioitinh:string;
+ 
 
   ngOnInit() {
     this.getEmployee(this.idEmployee);
@@ -32,6 +33,7 @@ export class EmployeeDetailsComponent implements OnInit {
   idEmployee = +this.activatedRoute.snapshot.paramMap.get('id');
   getEmployee(idEmployee):void{ 
     this.employeeService.getEmployee(idEmployee).subscribe(employeeDetail => this.employee = employeeDetail);
+    this.employeeService.getEmployee(idEmployee).subscribe(employeeDetail => this.gioitinh = employeeDetail.empSex.toString());
   }
   
   //get list department
@@ -43,11 +45,13 @@ export class EmployeeDetailsComponent implements OnInit {
     this.location.back();
   }
 
+  department:Department={id:0,departmentName:""}
   //edit employee
   onSubmit(value){
-    this.employee.department.id = value.department;
-    this.employee.department.departmentName = "";
-    this.employeeService.updateEmployee(this.employee).subscribe(() => this.goBack());
+    value.department = +value.department;
+    this.department.id = value.department;
+    value.department = this.department;
+    this.employeeService.updateEmployee(value).subscribe(() => this.goBack());
   }
 
 }

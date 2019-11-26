@@ -17,8 +17,8 @@
             <td>{{training.id}}</td>
             <td>{{training.trainingCode}}</td>
             <td>{{training.trainingName}}</td>
-            <td>{{training.trainingStartDate}}</td>
-            <td>{{training.trainingEndDate}}</td>
+            <td>{{training.trainingStartDate | date:"dd/MM/yyyy"}}</td>
+            <td>{{training.trainingEndDate | date:"dd/MM/yyyy"}}</td>
             <td>{{training.trainingStatus === 1?"đang hoạt động":"ko hoạt động"}}</td>
             <td>
                 <button type="button" class="btn btn-warning" routerLink="/training-detail/{{training.id}}">Edit</button>

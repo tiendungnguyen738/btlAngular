@@ -22,8 +22,7 @@ export class TrainingformComponent implements OnInit {
   }
   submit(value)
   {
-     this.trainingService.addTraining(value).subscribe(() =>this.goBack()) ;
-    
+    this.trainingService.addTraining(value).subscribe(() =>this.goBack()) ;
   }
 
 }

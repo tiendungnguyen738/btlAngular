@@ -3,45 +3,78 @@
       (ngSubmit)="onSubmit(formEmployee.value)">
  <div class="form-group">
       <label for="id1">Name</label>
-      <input type="text" class="form-control" id="id1" placeholder="enter Name" name="empName" ngModel>
+      <input type="text" class="form-control" id="id1" placeholder="enter Name" name="empName" ngModel
+        required
+        minlength="4"
+        #formName="ngModel">
+        <div *ngIf="formName.invalid && (formName.dirty || formName.touched)" class="alert alert-danger">
+            <div *ngIf="formName.errors.required">Name is required</div>
+            <div *ngIf="formName.errors.minlength">Name must be at least 4 characters long.</div>
+        </div>
   </div>
 
   <div class="form-group">
       <label for="id2">BirthDay</label>
-      <input type="text" class="form-control" id="id2" placeholder="enter BirthDay" name="empDob" ngModel>
+      <input type="date" class="form-control" id="id2" placeholder="enter BirthDay" name="empDob" ngModel
+      required #formBirthDay="ngModel">
+      <div *ngIf="formBirthDay.invalid && (formBirthDay.dirty|| formBirthDay.touched)" 
+       class="alert alert-danger">
+           <div>Code is required</div>
+      </div>
   </div>
 
   <div class="form-group">
       <label for="id3">Sex</label>
-      <input type="number" class="form-control" id="id3" placeholder="enter Sex" name="empSex" ngModel>
+      <input type="radio" id="id3" name="empSex" value="1" [(ngModel)]="gioitinh" style="margin-left: 2%;"> Nam 
+      <input type="radio" id="id3" name="empSex" value="0" [(ngModel)]="gioitinh" style="margin-left: 2%;">  Nữ
   </div>
 
   <div class="form-group">
       <label for="id4">NumberInsurance</label>
-      <input type="text" class="form-control" id="id4" placeholder="enter NumberInsurance" name="empNumberInsurance" ngModel>
+      <input type="text" class="form-control" id="id4" placeholder="enter NumberInsurance" name="empNumberInsurance" ngModel
+       required 
+       #formNumberInsurance="ngModel">
+       <div *ngIf="formNumberInsurance.invalid && (formNumberInsurance.dirty || formNumberInsurance.touched)"
+       class="alert alert-danger"> NumberInsurance is required</div>
   </div>
 
   <div class="form-group">
       <label for="id5">Address</label>
-      <input type="text" class="form-control" id="id5" placeholder="enter Address" name="empAddress" ngModel>
+      <input type="text" class="form-control" id="id5" placeholder="enter Address" name="empAddress" ngModel
+      required
+      #formAddress="ngModel">
+      <div *ngIf="formAddress.invalid && (formAddress.dirty || formAddress.touched)"
+      class="alert alert-danger">Address is required</div>
   </div>
 
   <div class="form-group">
       <label for="id6">Phone</label>
-      <input type="text" class="form-control" id="id6" placeholder="enter Phone" name="empPhone" ngModel>
+      <input type="text" class="form-control" id="id6" placeholder="enter Phone" name="empPhone" ngModel
+      required 
+      #formPhone="ngModel">
+      <div *ngIf="formPhone.invalid && (formPhone.dirty || formPhone.touched)"
+      class="alert alert-danger">Phone is required</div>
   </div>
 
   <div class="form-group">
       <label for="type">Type</label>
-      <input type="number" class="form-control" id="type" placeholder="enter Type" name="empType" ngModel>
+      <input type="number" class="form-control" id="type" placeholder="enter Type" name="empType" ngModel
+      required 
+      #formType="ngModel">
+      <div *ngIf="formType.invalid && (formType.dirty || formType.touched)"
+      class="alert alert-danger">Type is required</div>
   </div>
 
    <div class="form-group">
         <label for="ddd">Department</label><br>
-        <select id="ddd" class="form-control form-control-sm" name="department" ngModel style="width: 20%;">
+        <select id="ddd" class="form-control form-control-sm" name="department" ngModel style="width: 20%;" required #formDepartment="ngModel">
             <option *ngFor="let phongban of departmentArray" [value]="phongban.id">{{phongban.departmentName}}</option>
         </select>
+        <div *ngIf="formDepartment.invalid" class="alert alert-danger">Department is required</div>
     </div>
-    <button type="submit">save</button>
+    <button type="submit" class="btn btn-outline-success" style="margin-left: 42%;"
+    [disabled]="formName.invalid || formNumberInsurance.invalid || formAddress.invalid || formPhone.invalid ||formDepartment.invalid || formBirthDay.invalid || formType.invalid">
+    SAVE</button>
+    <button class="btn btn-outline-info" type="button" style="margin-left: 1%;" (click)="goBack()">GO BACK</button>
 </form>
-<button (click)="goBack()">go back</button>
+

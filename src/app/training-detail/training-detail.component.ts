@@ -31,17 +31,17 @@ export class TrainingDetailComponent implements OnInit {
   goBack(){
     this.location.back();
   }
-  
+  trainingStatus:string;
   //get training
   id= +this.activatedRoute.snapshot.paramMap.get("id");
   getTraining(id:number):void{
     this.trainingService.getTraining(id).subscribe(training =>this.training = training);
+    this.trainingService.getTraining(id).subscribe(training =>this.trainingStatus = training.trainingStatus.toString());
   }
 
   //sua training
   submit(value){
-    this.trainingService.editTraining(value).subscribe(() =>this.goBack())
-    console.log(value);
+     this.trainingService.editTraining(value).subscribe(() =>this.goBack());
   }
 
 }

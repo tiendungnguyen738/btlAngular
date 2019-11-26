@@ -18,7 +18,7 @@ export class EmployeeformComponent implements OnInit {
               private employeeService:EmployeeService) { 
   }
   
-
+  gioitinh="1";
   ngOnInit() {
     this.getDepartments();
   }

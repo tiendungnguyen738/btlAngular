@@ -19,7 +19,7 @@
         <tr>
             <td>{{employee.id}}</td>
             <td>{{employee.empName}}</td>
-            <td>{{employee.empDob}}</td>
+            <td>{{employee.empDob | date:"dd/MM/yyyy"}}</td>
             <td>{{employee.empSex === 1?'nam':'nữ'}}</td>
             <td style="width:5%;">{{employee.empNumberInsurance}}</td>
             <td>{{employee.empAddress}}</td>
