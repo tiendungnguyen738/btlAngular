@@ -1,83 +1,96 @@
-<h4>Edit Employee Detail</h4>
+<h4>CẬP NHẬT THÔNG TIN NHÂN VIÊN</h4>
 <form #formEmployee="ngForm"
       (ngSubmit)="onSubmit(formEmployee.value)">
     <div class="form-group">
-        <label for="id">Id</label>
+        <label for="id">Mã</label>
         <input type="number" class="form-control" id="id" readonly name="id" [(ngModel)]="employee.id">
     </div>
 
     <div class="form-group">
-        <label for="id1">Name</label>
+        <label for="id1">Tên Nhân Viên</label>
         <input type="text" class="form-control" id="id1" placeholder="enter Name" name="empName" [(ngModel)]="employee.empName"
         required
         minlength="4"
         #formName="ngModel">
         <div *ngIf="formName.invalid && (formName.dirty || formName.touched)" class="alert alert-danger">
-            <div *ngIf="formName.errors.required">Name is required</div>
-            <div *ngIf="formName.errors.minlength">Name must be at least 4 characters long.</div>
+            <div *ngIf="formName.errors.required">Tên bắt buộc phải nhập</div>
+            <div *ngIf="formName.errors.minlength">Tên ít nhất phải 4 ký tự.</div>
         </div>
     </div>
 
     <div class="form-group">
-        <label for="id2">BirthDay</label>
+        <label for="id2">Ngày Sinh</label>
         <input type="date" class="form-control" id="id2" placeholder="enter BirthDay" name="empDob" [(ngModel)]="employee.empDob"
         required #formBirthDay="ngModel">
         <div *ngIf="formBirthDay.invalid && (formBirthDay.dirty|| formBirthDay.touched)" 
          class="alert alert-danger">
-             <div>Code is required</div>
+             <div>Ngày sinh bắt buộc phải nhập</div>
         </div>
     </div>
 
     <div class="form-group">
-        <label for="id3">Sex</label>
+        <label for="id3">Giới Tính</label>
         <input type="radio" id="id3" name="empSex" value="1" [(ngModel)]="gioitinh" style="margin-left: 2%;"> Nam 
         <input type="radio" id="id3" name="empSex" value="0" [(ngModel)]="gioitinh" style="margin-left: 2%;">  Nữ
     </div>
 
     <div class="form-group">
-        <label for="id4">NumberInsurance</label>
+        <label for="id4">Số Bảo Hiểm</label>
         <input type="text" class="form-control" id="id4" placeholder="enter NumberInsurance" name="empNumberInsurance" [(ngModel)]="employee.empNumberInsurance"
         required 
         #formNumberInsurance="ngModel">
         <div *ngIf="formNumberInsurance.invalid && (formNumberInsurance.dirty || formNumberInsurance.touched)"
-        class="alert alert-danger"> NumberInsurance is required</div>
+        class="alert alert-danger">Số bảo hiểm bắt buộc nhập</div>
     </div>
 
     <div class="form-group">
-        <label for="id5">Address</label>
+        <label for="id5">Địa Chỉ</label>
         <input type="text" class="form-control" id="id5" placeholder="enter Address" name="empAddress" [(ngModel)]="employee.empAddress"
         required
         #formAddress="ngModel">
         <div *ngIf="formAddress.invalid && (formAddress.dirty || formAddress.touched)"
-        class="alert alert-danger">Address is required</div>
+        class="alert alert-danger">Địa Chỉ</div>
     </div>
 
     <div class="form-group">
-        <label for="id6">Phone</label>
+        <label for="id6">Điện Thoại</label>
         <input type="text" class="form-control" id="id6" placeholder="enter Phone" name="empPhone" [(ngModel)]="employee.empPhone"
         required 
       #formPhone="ngModel">
       <div *ngIf="formPhone.invalid && (formPhone.dirty || formPhone.touched)"
-      class="alert alert-danger">Phone is required</div>
+      class="alert alert-danger">Điện thoại bắt buộc nhập</div>
     </div>
 
-    <div class="form-group">
-        <label for="id7">Type</label>
+    <!-- <div class="form-group">
+        <label for="id7">Loại Nhân Viên</label>
         <input type="number" class="form-control" id="id7" placeholder="enter Type" name="empType" [(ngModel)]="employee.empType"
         required 
       #formType="ngModel">
       <div *ngIf="formType.invalid && (formType.dirty || formType.touched)"
       class="alert alert-danger">Type is required</div>
+    </div> -->
+
+    <div class="form-group">
+        <label for="type">Loại Nhân Viên</label>
+        <select id="type" name="empType" [(ngModel)]="employee.empType" class="form-control" style="width: 20%;"
+        #formType="ngModel" required>
+            <option value="-1">-----Loại Nhân Viên ---------</option>
+            <option value="1">Nhân Viên Chính Thức</option>
+            <option value="0">Nhân Viên Thử Việc</option>
+        </select>
+        <div *ngIf="(formType.dirty || formType.touched) && formType.value=='-1'"
+        class="alert alert-danger">
+        Bắt buộc phải nhập loại nhân viên</div>
     </div>
 
     <div class="form-group">
-        <label for="id8">Department</label>
+        <label for="id8">Phòng Ban</label>
         <select name="department" id="id8" style="margin-left: 2%;width: 20%;border-radius: 5%;" [(ngModel)]="employee.department.id">
             <option *ngFor="let department of departments" [value]="department.id">{{department.departmentName}}</option>
         </select>
     </div>
     <button type="submit" class="btn btn-outline-success" style="margin-left: 42%;"
-    [disabled]="formName.invalid || formNumberInsurance.invalid || formAddress.invalid || formPhone.invalid || formBirthDay.invalid || formType.invalid">
-    UPDATE</button>
-    <button class="btn btn-outline-info" type="button" style="margin-left: 1%;" (click)="goBack()">GO BACK</button>
+    [disabled]="formName.invalid || formNumberInsurance.invalid || formAddress.invalid || formPhone.invalid || formBirthDay.invalid || formType.value=='-1'">
+    CẬP NHẬT</button>
+    <button class="btn btn-outline-info" type="button" style="margin-left: 1%;" (click)="goBack()">QUAY LẠI</button>
 </form>

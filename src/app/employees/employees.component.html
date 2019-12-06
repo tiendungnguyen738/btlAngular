@@ -1,18 +1,18 @@
-<h3>List Employees</h3>
-<button routerLink="/add-employee" type="button" class="btn btn-primary" style="margin-bottom: 1%;">ADD</button>
+<h3>Danh Sách Nhân Viên</h3>
+<button routerLink="/add-employee" type="button" class="btn btn-primary" style="margin-bottom: 1%;">THÊM</button>
 <table class="table table-striped table-dark">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Dob</th>
-            <th>sex</th>
-            <th>Insurance Number</th>
-            <th>Address</th>
-            <th>Phone</th>
-            <th>Type</th>
-            <th>Department</th>
-            <th style="text-align: center;">Setting</th>
+            <th>Mã Nhân Viên</th>
+            <th>Tên Nhân Viên</th>
+            <th>Ngày Sinh</th>
+            <th>Giới Tính</th>
+            <th>Số Bảo Hiểm</th>
+            <th>Địa Chỉ</th>
+            <th>Điện Thoại</th>
+            <th>Loại NV</th>
+            <th>Phòng Ban</th>
+            <th style="text-align: center;">Chỉnh Sửa</th>
         </tr>
     </thead>
     <tbody *ngFor="let employee of employees">
@@ -24,11 +24,11 @@
             <td style="width:5%;">{{employee.empNumberInsurance}}</td>
             <td>{{employee.empAddress}}</td>
             <td>{{employee.empPhone}}</td>
-            <td>{{employee.empType}}</td>
+            <td>{{employee.empType ===1?'nv chính thức':'nv thử việc'}}</td>
             <td>{{employee.department.departmentName}}</td>
             <td>
-                <button type="button" class="btn btn-warning" routerLink="/employee-detail/{{employee.id}}">Edit</button>
-                <button type="button" class="btn btn-danger" style="margin-left: 4%;" (click)="deleteEmp(employee)">Delete</button>    
+                <button type="button" class="btn btn-warning" routerLink="/employee-detail/{{employee.id}}" style="float: left;">CẬP NHẬT</button>
+                <button type="button" class="btn btn-danger" style="margin-left: 4%;" (click)="deleteEmp(employee)" style="float: left;">XÓA</button>    
             </td>
         </tr>        
     </tbody>

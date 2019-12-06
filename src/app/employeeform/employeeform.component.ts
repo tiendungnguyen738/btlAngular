@@ -19,6 +19,8 @@ export class EmployeeformComponent implements OnInit {
   }
   
   gioitinh="1";
+  selected="-1";
+  departmentSelected="-1";
   ngOnInit() {
     this.getDepartments();
   }

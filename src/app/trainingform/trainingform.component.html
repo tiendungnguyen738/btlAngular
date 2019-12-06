@@ -1,56 +1,53 @@
-<h3>Add Training</h3>
+<h3>THÊM ĐÀO TẠO</h3>
 <form #formTraining="ngForm"
       (ngSubmit)="submit(formTraining.value)">
  <div class="form-group">
-      <label for="id1">Training Name</label>
-      <input type="text" class="form-control" id="id1" required minlength="4" placeholder="enter Training Name" 
+      <label for="id1">Tên Đào Tạo</label>
+      <input type="text" class="form-control" id="id1" required placeholder="nhập Tên Đào Tạo" 
       name="trainingName" ngModel #form="ngModel">
       <div *ngIf="form.invalid && (form.dirty || form.touched)"
             class="alert alert-danger">
         <div *ngIf="form.errors.required">
-            Name is required.
-        </div>
-        <div *ngIf="form.errors.minlength">
-            Name must be at least 4 characters long.
+            Bắt buộc phải nhập tên đào tạo.
         </div>
       </div>
   </div>
 
   <div class="form-group">
-      <label for="id2">Training Code</label>
-      <input type="text" class="form-control" id="id2" placeholder="enter Training Code" name="trainingCode" ngModel
+      <label for="id2">Mã Đào Tạo</label>
+      <input type="text" class="form-control" id="id2" placeholder="nhập mã đào tạo" name="trainingCode" ngModel
        required #form2="ngModel">
        <div *ngIf="form2.invalid && (form2.dirty|| form2.touched)" 
         class="alert alert-danger">
-            <div>Code is required</div>
+            <div>Bắt buộc phải nhập mã đào tạo</div>
        </div>
   </div>
 
   <div class="form-group">
-    <label for="id4">Training Start Date</label>
+    <label for="id4">Ngày Đào Tạo</label>
     <input type="date"  class="form-control" id="id3" name="trainingStartDate" ngModel 
     required 
     #formStartDate="ngModel">
     <div *ngIf="formStartDate.invalid && (formStartDate.dirty || formStartDate.touched)" 
-    class="alert alert-danger">require</div>
+    class="alert alert-danger">Bắt buộc</div>
 </div>
 
   <div class="form-group">
-      <label for="id4">Training End Date</label>
+      <label for="id4">Ngày Kết Thúc</label>
       <input type="date" class="form-control" id="id4" name="trainingEndDate" ngModel 
       required #formEndDate="ngModel">
       <div *ngIf="formEndDate.invalid && (formEndDate.touched || formEndDate.dirty)" 
-      class="alert alert-danger">require</div>
+      class="alert alert-danger">Bắt buộc</div>
   </div>
 
   <div class="form-group">
-      <label for="id5">Training Status</label>
+      <label for="id5">Trạng Thái</label>
       <input type="radio" name="trainingStatus" [(ngModel)]="trainingStatus" value="1" style="margin-left: 3%;"> Đang Hoạt Động
       <input type="radio" name="trainingStatus" [(ngModel)]="trainingStatus" value="0" style="margin-left: 2%;"> Không Hoạt Động
   </div>
   <button type="submit" class="btn btn-outline-success" style="margin-left: 43%;" 
-  [disabled]="form2.invalid || form.invalid || formStartDate.invalid || formEndDate.invalid">SAVE</button>
-  <button type="button" class="btn btn-outline-info" (click)="goBack()" style="margin-left: 1%;">GO BACK</button>
+  [disabled]="form2.invalid || form.invalid || formStartDate.invalid || formEndDate.invalid">THÊM</button>
+  <button type="button" class="btn btn-outline-info" (click)="goBack()" style="margin-left: 1%;">QUAY LẠI</button>
 </form>
 
 
